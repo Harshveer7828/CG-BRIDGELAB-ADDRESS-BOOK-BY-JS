@@ -1,11 +1,10 @@
-// Class contact to ensure the following details from the user
 class Contact {
     constructor(firstName, lastName, address, city, state, zip, phoneNumber, email) {
         this.validateName(firstName);
         this.validateName(lastName);
-        this.validateAddress(address, "Address", 4);
-        this.validateMinLength(city, "City", 4);
-        this.validateMinLength(state, "State", 4);
+        this.validateAddress(address, 4);
+        this.validateAddress(city, 4);
+        this.validateAddress(state, 4);
         this.validateZip(zip);
         this.validatePhone(phoneNumber);
         this.validateEmail(email);
@@ -20,39 +19,39 @@ class Contact {
         this.email = email;
     }
 
-
     validateName = (name) => {
-        const regexPattern = /^[A-Z][a-zA-Z]{2,}$/
+        const regexPattern = /^[A-Z][a-zA-Z]{2,}$/;
         if (!regexPattern.test(name)) {
-            throw new Error(`${name} is not valid please check try again!`);
+            throw new Error(`${name} is not valid, please check and try again!`);
         }
     }
 
     validateAddress = (value, minLength) => {
         if (value.length < minLength) {
-            throw new Error(`${value} for address is not valid it must have atleast ${minLength} characters`);
+            throw new Error(`${fieldName} must have at least ${minLength} characters.`);
         }
     }
 
     validateZip = (zipCode) => {
-        const zipPattern = /^[0-9]{5,6}$/;
-        if(!zipPattern.test){
-            throw new Error("Zip must be of length 5 or 6 and only contains number " + zipCode);
+        const zipPattern = /^[0-9]{5,7}$/;
+        if (!zipPattern.test(zipCode)) {
+            throw new Error("Zip must be of length 5 or 6 and only contain numbers.");
         }
     }
 
-    validatePhone = (phone)=> {
-        const phonePattern = /^[0-9]{10}$/; 
+    validatePhone = (phone) => {
+        const phonePattern = /^[0-9]{10}$/;
         if (!phonePattern.test(phone)) {
             throw new Error("Phone number must be a valid 10-digit number.");
         }
     }
 
-    validateEmail = (email)=> {
+    validateEmail = (email) => {
         const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
         if (!emailPattern.test(email)) {
             throw new Error("Invalid email format.");
         }
     }
 }
+
 module.exports = Contact;
