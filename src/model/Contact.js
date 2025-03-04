@@ -8,7 +8,7 @@ class Contact {
         this.validateZip(zip);
         this.validatePhone(phoneNumber);
         this.validateEmail(email);
-        
+
         this.firstName = firstName;
         this.lastName = lastName;
         this.address = address;
@@ -33,11 +33,15 @@ class Contact {
     }
 
     validateZip = (zipCode) => {
-        const zipPattern = /^[0-9]{5,7}$/;
-        if (!zipPattern.test(zipCode)) {
-            throw new Error("Zip must be of length 5 or 6 and only contain numbers.");
+        let zipPattern = /^[0-9]{5,6}$/; 
+        
+        
+        if (!zipPattern.test(zipCode.toString())) {  
+            throw new Error("Zip must be exactly 5 or 6 digits and contain only numbers.");
         }
-    }
+    };
+    
+    
 
     validatePhone = (phone) => {
         const phonePattern = /^[0-9]{10}$/;
@@ -51,6 +55,10 @@ class Contact {
         if (!emailPattern.test(email)) {
             throw new Error("Invalid email format.");
         }
+    }
+
+    toString() {
+        return `${this.firstName} ${this.lastName}, ${this.address}, ${this.city}, ${this.state}, ${this.zip}, ${this.phoneNumber}, ${this.email}`;
     }
 }
 
