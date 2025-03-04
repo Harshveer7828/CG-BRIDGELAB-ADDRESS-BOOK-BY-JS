@@ -9,5 +9,6 @@ try {
     myAddressBook.addContact(contact1);
     console.log(myAddressBook.getContact);
 } catch (error) {
-
+    console.log(error);
+    
 }
