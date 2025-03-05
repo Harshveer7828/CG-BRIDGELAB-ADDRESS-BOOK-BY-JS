@@ -1,1 +1,0 @@
-zipPattern.test(zipCode.toString())

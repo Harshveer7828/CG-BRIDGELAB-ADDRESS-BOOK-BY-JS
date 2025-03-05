@@ -1,26 +1,32 @@
 const AddressBook = require("./service/AddressBook.js");
 const Contact = require("./model/Contact.js");
 
-const myAddressBook = new AddressBook();
+const addressBook = new AddressBook();
 
 try {
-    const contact1 = new Contact(
-        "Harshveer",
-        "Singh",
-        "Bhopal City",
-        "bhopal",
-        "Madhya Pradesh",
-        "462038",
-        "7828159961",
-        "harshveer7828@gmail.com"
-    );
+    addressBook.addContact({ firstName: "Harsh veer", lastName: "Sing", address:"Address1",city: "New York", state: "Bhopal", zip: 10001 ,phone:7828159961,email:"harshveer7828@gmail.com"});
+    addressBook.addContact({ firstName: "Alice", lastName: "Smith", address:"Address2",city: "Los Angeles", state: "CA", zip: 90001,phone:7828159961,email:"harshveer7828@gmail.com" });
+    addressBook.addContact({ firstName: "Bob", lastName: "Brown", address:"Address1",city: "Chicago", state: "IL", zip: 60601,phone:7828159961,email:"harshveer7828@gmail.com" });
+    console.log("Original Entries: ");
+    
+    addressBook.getContact().forEach(contact =>{
+        console.log(contact);
+    })
 
-    myAddressBook.addContact(contact1);
-    console.log(myAddressBook.getContact());
+    console.log("Entries after sorting by city:");
+    
+    addressBook.sortByCity();
+    addressBook.getContact().forEach(contact =>{
+        console.log(contact);
+    })
 
     // Sort contacts alphabetically by name
-    const sortedContacts = myAddressBook.sortContactsByName();
-    sortedContacts.forEach(contact => console.log(contact.toString()));
+    console.log("Entries after sorting by name:");
+    
+    const sortedContacts = addressBook.sortContactsByName();
+    sortedContacts.forEach(contact => console.log(contact));
+
+    
 
 } catch (error) {
     console.log(error);

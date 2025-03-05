@@ -28,7 +28,7 @@ class Contact {
 
     validateAddress = (value, minLength) => {
         if (value.length < minLength) {
-            throw new Error(`${fieldName} must have at least ${minLength} characters.`);
+            throw new Error(`must have at least ${minLength} characters.`);
         }
     }
 
